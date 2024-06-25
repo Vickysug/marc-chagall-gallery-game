@@ -47,9 +47,9 @@ class SceneTwo extends Phaser.Scene
     
     preload ()
     {
-        this.load.image('gallery', 'https://play.rosebud.ai/assets/art-gallery.jpg?VM6G');
+        this.load.image('gallery', 'https://play.rosebud.ai/assets/art-gallery.jpg?jgjB');
         this.load.image('paintbrush', 'https://play.rosebud.ai/assets/paintbrush.png?zfoN');
-        this.load.image('hidingSpots', 'https://play.rosebud.ai/assets/hiding-spot.png?zeI5');
+        this.load.image('hidingSpots', 'https://play.rosebud.ai/assets/hiding-spot3.png?SIUW');
     }
 
     create ()
