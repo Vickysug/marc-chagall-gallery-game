@@ -1,15 +1,47 @@
-class Example extends Phaser.Scene
+class SceneOne extends Phaser.Scene {
+    constructor() {
+        super('SceneOne');
+    }
+
+    preload() {
+        this.load.image('marcChagall', 'https://play.rosebud.ai/assets/marc-chagall.jpg?JZtJ');
+        this.load.image('artOne', 'https://play.rosebud.ai/assets/colourful-graffiti-street-art-background.jpg?pFgw');
+        this.load.image('artTwo', 'https://play.rosebud.ai/assets/multicolor-painted.jpg?cTjR');
+    }
+
+    create() {
+        const textLabel = this.add.text(20, 190, 'About Marc Chagall.\n\n\n  \n  \n\n\n\n   \n  ', { font: 'bold 20px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
+
+        const textGame = this.add.text(20, 450, ' Play the game: (Add instructions here)!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
+
+        this.add.image(200, 70, 'marcChagall').setScale(0.7);
+        this.add.image(400, 70, 'artOne').setScale(0.5);
+        this.add.image(600, 70, 'artTwo').setScale(0.3);
+
+        console.log(textLabel);
+
+        const startButton = this.add.text(500, 540, 'Start Game', { font: 'bold 40px Arial', fill: '#ffffff' });
+        startButton.setInteractive();
+
+        startButton.on('pointerdown', () => {
+            console.log('Proceed button clicked');
+            this.scene.start('SceneTwo');
+        });
+    }
+}
+
+class SceneTwo extends Phaser.Scene
 {
     constructor ()
     {
-        super();
+        super('SceneTwo');
     }
-
+    
     preload ()
     {
-        this.load.image('gallery', 'https://play.rosebud.ai/assets/art-gallery.jpg?wMiC');
-        this.load.image('paintbrush', 'https://play.rosebud.ai/assets/paintbrush.png?rPCg');
-        this.load.image('hidingSpots', 'https://play.rosebud.ai/assets/hiding-spot.png?rlbD');
+        this.load.image('gallery', 'https://play.rosebud.ai/assets/art-gallery.jpg?VM6G');
+        this.load.image('paintbrush', 'https://play.rosebud.ai/assets/paintbrush.png?zfoN');
+        this.load.image('hidingSpots', 'https://play.rosebud.ai/assets/hiding-spot.png?zeI5');
     }
 
     create ()
@@ -278,7 +310,7 @@ const config = {
             debug: false
         }
     },
-    scene: Example
+    scene: [SceneOne, SceneTwo ]
 };
 
 window.phaserGame = new Phaser.Game(config);
