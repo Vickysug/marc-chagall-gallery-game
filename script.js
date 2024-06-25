@@ -7,16 +7,24 @@ class SceneOne extends Phaser.Scene {
         this.load.image('marcChagall', 'https://play.rosebud.ai/assets/marc-chagall.jpg?JZtJ');
         this.load.image('artOne', 'https://play.rosebud.ai/assets/the-blue-circus.png?UrgG');
         this.load.image('artTwo', 'https://play.rosebud.ai/assets/The-Dance-and-the-Circus.png?m2Id');
+        this.load.image('artThree', 'https://play.rosebud.ai/assets/the-green-donkey.png?96RT');
     }
 
     create() {
-        const textLabel = this.add.text(20, 290, 'About Marc Chagall.\n\n\n  \n  \n\n\n\n   \n  ', { font: 'bold 20px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
+        
+        const textArtOne = this.add.text(300, 300, 'The Blue Circus 1950', { font: 'bold 15px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textArtTwo = this.add.text(535, 300, 'The Dance & The Circus 1950', { font: 'bold 15px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textArtThree = this.add.text(590, 490, 'The Green Donkey 1911', { font: 'bold 15px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textLabe2 = this.add.text(20, 300, 'Marc Chagall 1887-1985 ', { font: 'bold 18px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textLabel = this.add.text(20, 340, '1910 - 1913 Painted scenes of jewish life on the shtetl.\n\n 1922 Left Russia for France. \n\n 1922 - 1928 Achieved fame in France.  \n\n1938 - 1945 His art turned darker during the war. \n\n 1941 Fled France to escape the holocaust. \n\n 1977 Exhibited at the Louvre; awarded Legion d Honneur', { font: 'bold 15px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
+        
+        const textGame = this.add.text(20, 540, ' Play the game: Find the hidden \nred paintbrushes in the Art Gallery!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
 
-        const textGame = this.add.text(20, 450, ' Play the game: (Add instructions here)!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
-
-        this.add.image(100, 150, 'marcChagall').setScale(0.8);
+        this.add.image(130, 150, 'marcChagall').setScale(0.9);
         this.add.image(400, 150, 'artOne').setScale(0.5);
         this.add.image(650, 150, 'artTwo').setScale(0.5);
+        this.add.image(670, 410, 'artThree').setScale(0.3);
+
 
         console.log(textLabel);
 
