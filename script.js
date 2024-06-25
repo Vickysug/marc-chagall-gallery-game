@@ -5,18 +5,18 @@ class SceneOne extends Phaser.Scene {
 
     preload() {
         this.load.image('marcChagall', 'https://play.rosebud.ai/assets/marc-chagall.jpg?JZtJ');
-        this.load.image('artOne', 'https://play.rosebud.ai/assets/colourful-graffiti-street-art-background.jpg?pFgw');
-        this.load.image('artTwo', 'https://play.rosebud.ai/assets/multicolor-painted.jpg?cTjR');
+        this.load.image('artOne', 'https://play.rosebud.ai/assets/the-blue-circus.png?UrgG');
+        this.load.image('artTwo', 'https://play.rosebud.ai/assets/The-Dance-and-the-Circus.png?m2Id');
     }
 
     create() {
-        const textLabel = this.add.text(20, 190, 'About Marc Chagall.\n\n\n  \n  \n\n\n\n   \n  ', { font: 'bold 20px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textLabel = this.add.text(20, 290, 'About Marc Chagall.\n\n\n  \n  \n\n\n\n   \n  ', { font: 'bold 20px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
 
         const textGame = this.add.text(20, 450, ' Play the game: (Add instructions here)!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
 
-        this.add.image(200, 70, 'marcChagall').setScale(0.7);
-        this.add.image(400, 70, 'artOne').setScale(0.5);
-        this.add.image(600, 70, 'artTwo').setScale(0.3);
+        this.add.image(100, 150, 'marcChagall').setScale(0.8);
+        this.add.image(400, 150, 'artOne').setScale(0.5);
+        this.add.image(650, 150, 'artTwo').setScale(0.5);
 
         console.log(textLabel);
 
