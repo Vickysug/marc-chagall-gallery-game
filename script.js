@@ -17,7 +17,7 @@ class SceneOne extends Phaser.Scene {
         const textLabe2 = this.add.text(20, 300, 'Marc Chagall 1887-1985 ', { font: 'bold 18px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
         const textLabel = this.add.text(20, 340, '1910 - 1913 Painted scenes of jewish life on the shtetl.\n\n 1922 Left Russia for France. \n\n 1922 - 1928 Achieved fame in France.  \n\n1938 - 1945 His art turned darker during the war. \n\n 1941 Fled France to escape the holocaust. \n\n 1977 Exhibited at the Louvre; awarded Legion d Honneur', { font: 'bold 15px Courier New', fill: '#ffffff', wordWrap: { width: 760, useAdvancedWrap: true } });
         
-        const textGame = this.add.text(20, 540, ' Play the game: Find the hidden \nred paintbrushes in the Art Gallery\nthen paint a picture!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
+        const textGame = this.add.text(20, 510, ' Play the game: Find the hidden \nred paintbrushes in the Art Gallery\nthen paint a picture!', { font: 'bold 20px Times New Roman', fill: '#34eb92', wordWrap: { width: 760, useAdvancedWrap: true } });
 
         this.add.image(130, 150, 'marcChagall').setScale(0.9);
         this.add.image(400, 150, 'artOne').setScale(0.5);
