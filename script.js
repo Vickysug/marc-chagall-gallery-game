@@ -319,11 +319,11 @@ class SceneThree extends Phaser.Scene
         this.add.text(400, 300, 'Painting App', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
         
         const paintingApp = `
-        <div id="paintingApp" style="width: 800px; height: 600px; background-color: #F5F5F5; font-family: sans-serif;">
+        <div id="paintingApp" style="width: 100%; height: 100%; background-color: #F5F5F5; font-family: sans-serif;">
             <h4 style="text-align: center; margin: 20px; font-family: 'Open Sans', sans-serif;">Paint a picture! Choose a colour and begin! <img src="https://play.rosebud.ai/assets/paintbrush.tiny.png?d2OD" alt="" class="paint" style="padding-top: 2px;"></h4>
-            <canvas width="800" height="350" id="mainCanvas" style="background: #FFF; display: block; margin: 40px auto 10px; border-radius: 5px; border: 1px solid #E0E0E0; box-shadow: 0 4px 0 0 #E0E0E0; cursor: crosshair;"></canvas>
+            <canvas id="mainCanvas" style="background: #FFF; display: block; margin: 40px auto 10px; border-radius: 5px; border: 1px solid #E0E0E0; box-shadow: 0 4px 0 0 #E0E0E0; cursor: crosshair;"></canvas>
 
-            <div class="controls" style="min-height: 60px; margin: 0 auto; width: 600px; border-radius: 5px; overflow: hidden;">
+            <div class="controls" style="min-height: 60px; margin: 0 auto; width: 100%; border-radius: 5px; overflow: hidden;">
                 <ul style="list-style:none; margin: 0; float: left; padding: 10px 0 20px; width: 100%; text-align: center;">
                     <li class="red selected" style="display: inline-block; height: 54px; width: 54px; border-radius: 60px; cursor: pointer; border: 0; box-shadow: 0 3px 0 0 #E0E0E0; background: #E74C3C; margin: 0 5px 10px;"></li>
                     <li class="blue" style="display: inline-block; height: 54px; width: 54px; border-radius: 60px; cursor: pointer; border: 0; box-shadow: 0 3px 0 0 #E0E0E0; background: #3498DB; margin: 0 5px 10px;"></li>
@@ -376,6 +376,16 @@ class SceneThree extends Phaser.Scene
             var lastEvent;
             var mouseDown = false;
 
+            function resizeCanvas() {
+                var containerWidth = document.getElementById('paintingApp').offsetWidth;
+                var containerHeight = document.getElementById('paintingApp').offsetHeight;
+                canvas.width = containerWidth * 0.9;
+                canvas.height = containerHeight * 0.6;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
             document.querySelector(".controls").addEventListener("click", function(e) {
                 if (e.target.tagName === "LI") {
                     document.querySelector(".selected").classList.remove("selected");
@@ -407,14 +417,31 @@ class SceneThree extends Phaser.Scene
                 newColor.click();
             });
 
+            function getMousePos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect();
+                return {
+                    x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+                    y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+                };
+            }
+
+            function getTouchPos(canvas, evt) {
+                var rect = canvas.getBoundingClientRect();
+                return {
+                    x: (evt.touches[0].clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+                    y: (evt.touches[0].clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+                };
+            }
+
             canvas.addEventListener("mousedown", function(e) {
-                lastEvent = e;
+                lastEvent = getMousePos(canvas, e);
                 mouseDown = true;
             });
 
             canvas.addEventListener("mousemove", function(e) {
                 if (mouseDown) {
-                    draw(e.offsetX, e.offsetY);
+                    var mousePos = getMousePos(canvas, e);
+                    draw(mousePos.x, mousePos.y);
                 }
             });
 
@@ -427,35 +454,33 @@ class SceneThree extends Phaser.Scene
             });
 
             canvas.addEventListener("touchstart", function(e) {
-                var touch = e.touches[0];
-                lastEvent = {
-                    offsetX: touch.pageX - canvas.offsetLeft,
-                    offsetY: touch.pageY - canvas.offsetTop
-                };
+                e.preventDefault();
+                lastEvent = getTouchPos(canvas, e);
                 mouseDown = true;
             });
 
             canvas.addEventListener("touchmove", function(e) {
-                var touch = e.touches[0];
-                if (mouseDown) {
-                    draw(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop);
-                }
                 e.preventDefault();
+                if (mouseDown) {
+                    var touchPos = getTouchPos(canvas, e);
+                    draw(touchPos.x, touchPos.y);
+                }
             });
 
-            canvas.addEventListener("touchend", function() {
+            canvas.addEventListener("touchend", function(e) {
+                e.preventDefault();
                 mouseDown = false;
             });
 
             function draw(x, y) {
                 context.beginPath();
-                context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
+                context.moveTo(lastEvent.x, lastEvent.y);
                 context.lineTo(x, y);
                 context.strokeStyle = colour;
                 context.lineWidth = 5;
                 context.lineCap = 'round';
                 context.stroke();
-                lastEvent = { offsetX: x, offsetY: y };
+                lastEvent = { x: x, y: y };
             }
 
             function clearCanvas() {
