@@ -1,5 +1,9 @@
 # Marc Chagall Gallery & Painting Game
+
 Aimed at ages 18-25, the 1-2 minute game offers a quick look into the life of a  refugee artist. It is a short game to learn about the artist, refugee Marc Chagall, play a short game of finding the paintbrush in the Art Gallery and then paint a picture.
+## Link to full game in Rosebud:
+https://play.rosebud.ai/games/224e2ea4-9949-479f-896a-c21971874e4f
+
 ## Link to deployed page: 
 https://vickysug.github.io/marc-chagall-gallery-game/
 
