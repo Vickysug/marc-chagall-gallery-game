@@ -46,6 +46,6 @@ Rosebud also allows the AI chat to change code.
 
 For the painting scene game I created this in VS code and added it to the game.  
 
-![alt text](images/paint-app.png)
+![alt text](images/screen.shot.png)
 
 https://vickysug.github.io/colouring-game/
