@@ -265,7 +265,7 @@ class SceneTwo extends Phaser.Scene
                 this.paintbrush.setPosition(this.sys.game.config.width / 2, paintbrushY);
                 
                 // Add text in the center of the screen
-                this.gameOverText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Times up! Thanks for playing.\nTo play again, please refresh the page.', { fontSize: '32px', fill: '#fff' });
+                this.gameOverText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Times up! Now you have paintbrushes, go to the studio and paint a picture!.', { fontSize: '32px', fill: '#fff' });
                 this.gameOverText.setOrigin(0.5, 0.5); // Center the text
 
                 const gameOverBoxWidth = this.gameOverText.width + 20; // Add some padding
