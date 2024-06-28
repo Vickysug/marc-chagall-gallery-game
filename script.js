@@ -301,6 +301,13 @@ class SceneTwo extends Phaser.Scene
     }
 }
 
+class SceneThree extends Phaser.Scene
+{
+    constructor ()
+    {
+        super('SceneThree');
+    }}
+
 const container = document.getElementById('renderDiv');
 const config = {
     type: Phaser.AUTO,
@@ -318,7 +325,7 @@ const config = {
             debug: false
         }
     },
-    scene: [SceneOne, SceneTwo ]
+    scene: [SceneOne, SceneTwo, SceneThree ]
 };
 
 window.phaserGame = new Phaser.Game(config);
