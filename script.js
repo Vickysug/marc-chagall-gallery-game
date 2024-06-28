@@ -80,11 +80,11 @@ class SceneTwo extends Phaser.Scene
         this.paintbrushInterval = null; // Initialize paintbrushInterval as null
 
         this.levelScore = 0;
-        this.levelScoreText = this.add.text(this.sys.game.config.width - 10, 10, `LEVEL / SCORE: ${this.levelScore}`, { fontSize: '24px', fill: '#fff' });
+        this.levelScoreText = this.add.text(this.sys.game.config.width - 10, 10, `SCORE: ${this.levelScore}`, { fontSize: '24px', fill: '#fff' });
         this.levelScoreText.setOrigin(1, 0); // Align text to the top right
 
         this.energy = 100;
-        this.energyText = this.add.text(this.sys.game.config.width - 10, this.levelScoreText.y + this.levelScoreText.height + 10, `Clicker Energy: ${this.energy}`, { fontSize: '24px', fill: '#fff' });
+        this.energyText = this.add.text(this.sys.game.config.width - 10, this.levelScoreText.y + this.levelScoreText.height + 10, `Timer: ${this.energy}`, { fontSize: '24px', fill: '#fff' });
         this.energyText.setOrigin(1, 0); // Align text to the top right
 
         const boxWidth = Math.max(this.levelScoreText.width, this.energyText.width) + 20; // Add some padding
@@ -146,7 +146,7 @@ class SceneTwo extends Phaser.Scene
                 if (canTeleport) {
                     clearInterval(this.paintbrushInterval);
                     this.levelScore++;
-                    this.levelScoreText.setText(`LEVEL / SCORE: ${this.levelScore}`);
+                    this.levelScoreText.setText(`SCORE: ${this.levelScore}`);
                     this.levelScoreText.setFill('#ffff00'); // Set text color to yellow
                     this.levelScoreYellowTimer = 1000; // Set the timer for 1 second
                     this.paintbrush.alpha *= 0.92; // Decrease transparency by 8%
@@ -163,7 +163,7 @@ class SceneTwo extends Phaser.Scene
                 if (canTeleport) {
                     clearInterval(this.paintbrushInterval);
                     this.levelScore++;
-                    this.levelScoreText.setText(`LEVEL / SCORE: ${this.levelScore}`);
+                    this.levelScoreText.setText(`Score: ${this.levelScore}`);
                     this.levelScoreText.setFill('#ffff00'); // Set text color to yellow
                     this.levelScoreYellowTimer = 1000; // Set the timer for 1 second
                     this.paintbrush.alpha *= 0.92; // Decrease transparency by 8%
@@ -173,7 +173,7 @@ class SceneTwo extends Phaser.Scene
                 }
             } else if (this.energy > 0) { // Only decrement energy if it's above 0
                 this.energy -= this.energyDecrement;
-                this.energyText.setText(`Clicker Energy: ${this.energy}`);
+                this.energyText.setText(`Timer: ${this.energy}`);
             }
         });
     }
@@ -252,7 +252,7 @@ class SceneTwo extends Phaser.Scene
         if (this.energyTimer >= 1000) { // 1 second has elapsed
             if (this.energy > 0 && this.paintbrushInterval !== null) { // Only decrement energy when the paintbrush is on his hiding routine and energy is above 0
                 this.energy -= this.energyDecrement;
-                this.energyText.setText(`Clicker Energy: ${this.energy}`);
+                this.energyText.setText(`Timer: ${this.energy}`);
             }
             if (this.energy <= 0) { // If energy falls below or equal to 0
                 clearInterval(this.paintbrushInterval); // Stop the paintbrush from moving
@@ -265,7 +265,7 @@ class SceneTwo extends Phaser.Scene
                 this.paintbrush.setPosition(this.sys.game.config.width / 2, paintbrushY);
                 
                 // Add text in the center of the screen
-                this.gameOverText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Times up! Now you have paintbrushes, go to the studio and paint a picture!.', { fontSize: '32px', fill: '#fff' });
+                this.gameOverText = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Times up! Now you have paintbrushes, \n go to the studio and paint a picture!.', { fontSize: '32px', fill: '#fff' });
                 this.gameOverText.setOrigin(0.5, 0.5); // Center the text
 
                 const gameOverBoxWidth = this.gameOverText.width + 20; // Add some padding
